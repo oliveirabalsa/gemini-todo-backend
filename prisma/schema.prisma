@@ -1,0 +1,31 @@
+// Define the Prisma client generator
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define the database connection
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EnumTaskPriority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum EnumTaskStatus {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+}
+
+model Task {
+  id          String            @id @default(uuid())
+  title       String
+  description String?
+  priority    EnumTaskPriority?
+  status      EnumTaskStatus?
+  dueDate     DateTime?
+}
