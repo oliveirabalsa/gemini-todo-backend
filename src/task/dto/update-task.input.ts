@@ -1,4 +1,4 @@
-import { FieldId } from '@/commom/decorators/field-id.decorator';
+import { FieldId } from '@/common/decorators/field-id.decorator';
 import { CreateTaskInput } from './create-task.input';
 import { InputType, PartialType } from '@nestjs/graphql';
 
@@ -6,5 +6,4 @@ import { InputType, PartialType } from '@nestjs/graphql';
 export class UpdateTaskInput extends PartialType(CreateTaskInput) {
   @FieldId()
   id: string;
-  }
-
+}

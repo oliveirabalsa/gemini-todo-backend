@@ -1,6 +1,6 @@
 import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 import { TaskPriority, TaskStatus } from '@/task/types/task.enum';
-import { FieldId } from '@/commom/decorators/field-id.decorator';
+import { FieldId } from '@/common/decorators/field-id.decorator';
 
 registerEnumType(TaskPriority, {
   name: 'TaskPriority',
@@ -22,10 +22,10 @@ export class Task {
   description?: string;
 
   @Field(() => TaskPriority, { nullable: true })
-  priority?: TaskPriority | null; 
+  priority?: TaskPriority | null;
 
   @Field(() => TaskStatus, { nullable: true })
-  status?: TaskStatus | null; 
+  status?: TaskStatus | null;
 
   @Field({ nullable: true })
   dueDate?: Date;
