@@ -1,0 +1,75 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Task {
+  id: ID!
+  title: String!
+  description: String
+  priority: TaskPriority
+  status: TaskStatus
+  dueDate: DateTime
+}
+
+enum TaskPriority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  tasks: [Task!]!
+  task(id: ID!): Task!
+}
+
+type Mutation {
+  createTask(createTaskInput: CreateTaskInput!): Task!
+  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+  removeTask(id: ID!): Task!
+}
+
+input CreateTaskInput {
+  """Title of the task"""
+  title: String!
+
+  """Description of the task"""
+  description: String
+
+  """Due date of the task"""
+  dueDate: DateTime
+
+  """Priority of the task (e.g., HIGH, MEDIUM, LOW)"""
+  priority: TaskPriority
+
+  """Status of the task (e.g., TODO, IN_PROGRESS, COMPLETED)"""
+  status: TaskStatus
+}
+
+input UpdateTaskInput {
+  """Title of the task"""
+  title: String
+
+  """Description of the task"""
+  description: String
+
+  """Due date of the task"""
+  dueDate: DateTime
+
+  """Priority of the task (e.g., HIGH, MEDIUM, LOW)"""
+  priority: TaskPriority
+
+  """Status of the task (e.g., TODO, IN_PROGRESS, COMPLETED)"""
+  status: TaskStatus
+  id: ID!
+}
