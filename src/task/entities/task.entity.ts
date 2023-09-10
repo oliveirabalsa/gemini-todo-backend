@@ -25,11 +25,11 @@ export class Task {
     defaultValue: TaskPriority.LOW,
     nullable: true,
   })
-  priority?: TaskPriority | null;
+  priority?: string | null;
 
   @Field(() => TaskStatus, { defaultValue: TaskStatus.TODO, nullable: true })
-  status?: TaskStatus | null;
+  status?: string | null;
 
   @Field({ nullable: true })
-  dueDate?: Date;
+  dueDate?: string;
 }

@@ -8,7 +8,7 @@ type Task {
   description: String
   priority: TaskPriority
   status: TaskStatus
-  dueDate: DateTime
+  dueDate: String
 }
 
 enum TaskPriority {
@@ -22,11 +22,6 @@ enum TaskStatus {
   IN_PROGRESS
   COMPLETED
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type Query {
   tasks: [Task!]!
@@ -55,6 +50,11 @@ input CreateTaskInput {
   """Status of the task (e.g., TODO, IN_PROGRESS, COMPLETED)"""
   status: TaskStatus
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 input UpdateTaskInput {
   """Title of the task"""
