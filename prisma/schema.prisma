@@ -3,22 +3,21 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// Define the database connection
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 enum EnumTaskPriority {
-  HIGH
-  MEDIUM
-  LOW
+  HIGH   @map("HIGH")
+  MEDIUM @map("MEDIUM")
+  LOW    @map("LOW")
 }
 
 enum EnumTaskStatus {
-  TODO
-  IN_PROGRESS
-  COMPLETED
+  TODO        @map("TODO")
+  IN_PROGRESS @map("IN_PROGRESS")
+  COMPLETED   @map("COMPLETED")
 }
 
 model Task {
