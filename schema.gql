@@ -6,21 +6,9 @@ type Task {
   id: ID!
   title: String!
   description: String
-  priority: TaskPriority
-  status: TaskStatus
+  priority: String
+  status: String
   dueDate: String
-}
-
-enum TaskPriority {
-  HIGH
-  MEDIUM
-  LOW
-}
-
-enum TaskStatus {
-  TODO
-  IN_PROGRESS
-  COMPLETED
 }
 
 type Query {
@@ -42,19 +30,14 @@ input CreateTaskInput {
   description: String
 
   """Due date of the task"""
-  dueDate: DateTime
+  dueDate: String
 
   """Priority of the task (e.g., HIGH, MEDIUM, LOW)"""
-  priority: TaskPriority
+  priority: String
 
   """Status of the task (e.g., TODO, IN_PROGRESS, COMPLETED)"""
-  status: TaskStatus
+  status: String
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 input UpdateTaskInput {
   """Title of the task"""
@@ -64,12 +47,12 @@ input UpdateTaskInput {
   description: String
 
   """Due date of the task"""
-  dueDate: DateTime
+  dueDate: String
 
   """Priority of the task (e.g., HIGH, MEDIUM, LOW)"""
-  priority: TaskPriority
+  priority: String
 
   """Status of the task (e.g., TODO, IN_PROGRESS, COMPLETED)"""
-  status: TaskStatus
+  status: String
   id: ID!
 }

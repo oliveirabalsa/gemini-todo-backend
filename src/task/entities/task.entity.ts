@@ -21,13 +21,13 @@ export class Task {
   @Field({ nullable: true })
   description?: string;
 
-  @Field(() => TaskPriority, {
+  @Field(() => String, {
     defaultValue: TaskPriority.LOW,
     nullable: true,
   })
   priority?: string | null;
 
-  @Field(() => TaskStatus, { defaultValue: TaskStatus.TODO, nullable: true })
+  @Field(() => String, { defaultValue: TaskStatus.TODO, nullable: true })
   status?: string | null;
 
   @Field({ nullable: true })

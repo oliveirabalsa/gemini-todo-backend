@@ -16,21 +16,21 @@ export class CreateTaskInput {
   @Field({ description: 'Due date of the task', nullable: true })
   @IsOptional()
   @IsDate()
-  dueDate?: Date;
+  dueDate?: string;
 
-  @Field(() => TaskPriority, {
+  @Field(() => String, {
     description: 'Priority of the task (e.g., HIGH, MEDIUM, LOW)',
     nullable: true,
   })
   @IsOptional()
   @IsEnum(TaskPriority, { message: 'Invalid priority value' })
-  priority?: TaskPriority;
+  priority?: string;
 
-  @Field(() => TaskStatus, {
+  @Field(() => String, {
     description: 'Status of the task (e.g., TODO, IN_PROGRESS, COMPLETED)',
     nullable: true,
   })
   @IsOptional()
   @IsEnum(TaskStatus, { message: 'Invalid status value' })
-  status?: TaskStatus;
+  status?: string;
 }
