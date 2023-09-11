@@ -9,6 +9,7 @@ type Task {
   priority: String
   status: String
   dueDate: String
+  active: Boolean
 }
 
 type Query {
@@ -19,7 +20,7 @@ type Query {
 type Mutation {
   createTask(createTaskInput: CreateTaskInput!): Task!
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
-  removeTask(id: ID!): Task!
+  removeTask(id: ID!): Boolean!
 }
 
 input CreateTaskInput {
@@ -37,6 +38,9 @@ input CreateTaskInput {
 
   """Status of the task (e.g., TODO, IN_PROGRESS, COMPLETED)"""
   status: String
+
+  """active status of the task"""
+  active: Boolean = true
 }
 
 input UpdateTaskInput {
@@ -54,5 +58,8 @@ input UpdateTaskInput {
 
   """Status of the task (e.g., TODO, IN_PROGRESS, COMPLETED)"""
   status: String
+
+  """active status of the task"""
+  active: Boolean = true
   id: ID!
 }

@@ -1,6 +1,12 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { TaskPriority, TaskStatus } from '@/task/types/task.enum';
-import { IsString, IsOptional, IsDate, IsEnum } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsDate,
+  IsEnum,
+  IsBoolean,
+} from 'class-validator';
 
 @InputType()
 export class CreateTaskInput {
@@ -33,4 +39,13 @@ export class CreateTaskInput {
   @IsOptional()
   @IsEnum(TaskStatus, { message: 'Invalid status value' })
   status?: string;
+
+  @Field(() => Boolean, {
+    description: 'active status of the task',
+    nullable: true,
+    defaultValue: true,
+  })
+  @IsOptional()
+  @IsBoolean()
+  active?: boolean;
 }

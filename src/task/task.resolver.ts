@@ -28,8 +28,8 @@ export class TaskResolver {
     return this.taskService.update(updateTaskInput.id, updateTaskInput);
   }
 
-  @Mutation(() => Task)
+  @Mutation(() => Boolean)
   async removeTask(@Args('id', { type: () => ID }) id: string) {
-    return this.taskService.remove(id);
+    return !!this.taskService.remove(id);
   }
 }

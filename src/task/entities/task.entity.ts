@@ -30,6 +30,9 @@ export class Task {
   @Field(() => String, { defaultValue: TaskStatus.TODO, nullable: true })
   status?: string | null;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   dueDate?: string;
+
+  @Field({ nullable: true, defaultValue: true })
+  active?: boolean;
 }
