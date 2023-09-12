@@ -32,6 +32,7 @@ export class TaskService {
   }
 
   async remove(id: string) {
+    await this.findOne(id);
     await this.taskRepository.deleteTask(id);
   }
 }

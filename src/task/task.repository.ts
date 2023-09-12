@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/prisma/prisma.service';
 import { CreateTaskInput, UpdateTaskInput } from './dto';
-import { TaskStatus } from './types/task.enum';
 
 @Injectable()
 export class TaskRepository {
@@ -14,7 +13,13 @@ export class TaskRepository {
   }
 
   async getTasks() {
-    return this.prisma.task.findMany({ where: { active: true, status: TaskStatus.TODO} }); }
+    return this.prisma.task.findMany({
+      where: { active: true },
+      orderBy: {
+        status: 'desc',
+      },
+    });
+  }
 
   async getTaskById(id: string) {
     return this.prisma.task.findUnique({ where: { id, active: true } });
@@ -25,7 +30,11 @@ export class TaskRepository {
   }
 
   async deleteTask(id: string) {
-    await this.prisma.task.update({ where: { id }, data: { active: false } });
+    const task = await this.getTaskById(id);
+    await this.prisma.task.update({
+      where: { id },
+      data: { ...task, active: false },
+    });
     return;
   }
 }
