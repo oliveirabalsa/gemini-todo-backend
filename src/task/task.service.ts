@@ -12,7 +12,7 @@ export class TaskService {
 
   async findAll() {
     const tasks = await this.taskRepository.getTasks();
-    if(!tasks?.length) {
+    if (!tasks?.length) {
       throw new HttpException('No tasks found', HttpStatus.NOT_FOUND);
     }
     return tasks;
@@ -20,7 +20,7 @@ export class TaskService {
 
   async findOne(id: string) {
     const task = await this.taskRepository.getTaskById(id);
-    if(!task) {
+    if (!task) {
       throw new HttpException('No task found', HttpStatus.NOT_FOUND);
     }
     return task;

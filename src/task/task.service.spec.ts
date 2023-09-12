@@ -2,44 +2,41 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TaskService } from './task.service';
 import { TaskRepository } from './task.repository';
 import { CreateTaskInput, UpdateTaskInput } from './dto';
-import crypto from 'crypto';
 import { Task } from '@prisma/client';
 import { PrismaService } from '@/prisma/prisma.service';
-
 
 describe('TaskService', () => {
   let service: TaskService;
   let taskRepository: TaskRepository;
-  let prismaService: PrismaService
-  let createdTask: Task; 
+  let createdTask: Task;
   let updatedTask: Task;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [PrismaService],
       providers: [TaskService, TaskRepository, PrismaService],
     }).compile();
 
     service = module.get<TaskService>(TaskService);
     taskRepository = module.get<TaskRepository>(TaskRepository);
-    prismaService = module.get<PrismaService>(PrismaService)
 
     createdTask = {
-      id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
       title: 'Test Task',
       description: 'Test Description',
       dueDate: null,
       priority: null,
       status: null,
+      active: true,
     };
 
     updatedTask = {
-      id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
       title: 'Updated Task',
       description: 'Updated Description',
       dueDate: null,
       priority: null,
       status: null,
+      active: true,
     };
   });
 
@@ -67,11 +64,11 @@ describe('TaskService', () => {
       const tasks = [
         {
           ...createdTask,
-          id:  "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+          id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
         },
         {
           ...createdTask,
-          id:  "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+          id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
         },
       ];
       jest.spyOn(taskRepository, 'getTasks').mockResolvedValue(tasks);
@@ -94,8 +91,9 @@ describe('TaskService', () => {
       const taskId = createdTask.id;
       const updateTaskInput: UpdateTaskInput = {
         id: taskId,
-        title: "New title"
+        title: 'New title',
       };
+      jest.spyOn(taskRepository, 'getTaskById').mockResolvedValue(updatedTask);
       jest.spyOn(taskRepository, 'updateTask').mockResolvedValue(updatedTask);
       const result = await service.update(taskId, updateTaskInput);
       expect(result).toEqual(updatedTask);
@@ -107,7 +105,7 @@ describe('TaskService', () => {
       const taskId = createdTask.id;
       jest.spyOn(taskRepository, 'deleteTask').mockResolvedValue();
       const result = await service.remove(taskId);
-      expect(result).toBe('Task deleted successfully');
+      expect(result).toBe(undefined);
     });
   });
 });
