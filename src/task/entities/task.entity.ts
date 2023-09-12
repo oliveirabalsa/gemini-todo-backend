@@ -18,7 +18,7 @@ export class Task {
   @Field()
   title: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   description?: string;
 
   @Field(() => String, {
