@@ -56,6 +56,14 @@ npm start
 
 ## Testing 🧪
 
+### Unit Tests 🔍
+
+You can chck unit tests running 
+
+```bash
+npm test
+```
+
 ### Accessing GraphQL 🔍
 
 You can access the GraphQL API at `http://localhost:3000/graphql`.
@@ -147,10 +155,7 @@ Replace `TASK_ID` with the actual task ID you want to update.
 ```bash
 curl 'http://localhost:3000/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:3000' --data-binary '{
   "query": "mutation {
-    removeTask(id: \"TASK_ID\") {
-      id
-      title
-    }
+    removeTask(id: \"TASK_ID\")
   }"
 }' --compressed
 ```
