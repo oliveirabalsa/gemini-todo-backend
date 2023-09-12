@@ -103,6 +103,7 @@ describe('TaskService', () => {
   describe('remove', () => {
     it('should remove a task by ID', async () => {
       const taskId = createdTask.id;
+      jest.spyOn(taskRepository, 'getTaskById').mockResolvedValue(createdTask);
       jest.spyOn(taskRepository, 'deleteTask').mockResolvedValue();
       const result = await service.remove(taskId);
       expect(result).toBe(undefined);
