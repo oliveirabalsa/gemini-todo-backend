@@ -1,6 +1,6 @@
 # Gemini Sports Todo Backend 🚀
 
-Backend repository of Gemini Sports Todo App. 📚
+Backend repository of Gemini Sports Todo App Challenge 📚
 
 ## Table of Contents 📋
 
