@@ -51,7 +51,7 @@ npx prisma migrate dev
 To start the application, use the following command:
 
 ```bash
-npm start
+npm run start:dev
 ```
 
 ## Testing 🧪
