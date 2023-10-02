@@ -43,7 +43,7 @@ docker-compose up -d
 To run database migrations, use the following command:
 
 ```bash
-npm run migrate
+npx prisma migrate dev
 ```
 
 ### Starting the Application ▶️
